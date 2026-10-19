@@ -25,9 +25,4 @@ cask "openthings" do
     "~/Library/Saved Application State/io.github.spuder.openthings.savedState",
     "~/Library/WebKit/io.github.spuder.openthings",
   ]
-
-  caveats <<~EOS
-    OpenThings is not notarized yet, so macOS blocks it the first time you open it.
-    Open it once, then choose System Settings → Privacy & Security → Open Anyway.
-  EOS
 end
