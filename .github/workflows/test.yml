@@ -1,0 +1,29 @@
+name: Test
+
+# Lints the cask. The OpenThings release workflow pushes version bumps here.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  cask:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tap this checkout
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/spuder"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/spuder/homebrew-openthings"
+      - run: brew style --cask spuder/openthings/openthings
+      - run: brew audit --cask --strict spuder/openthings/openthings
+      - name: Install (once a release exists)
+        run: |
+          if grep -q 'sha256 "0\{64\}"' Casks/openthings.rb; then
+            echo "No release published yet; skipping install."
+          else
+            brew install --cask spuder/openthings/openthings
+            test -d /Applications/OpenThings.app
+            brew uninstall --cask --zap spuder/openthings/openthings
+          fi
