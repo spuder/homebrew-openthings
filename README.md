@@ -10,12 +10,13 @@ or
 
 ```sh
 brew tap spuder/openthings
+brew trust spuder/openthings
 brew install --cask openthings
 ```
 
-The app is a universal build (Apple silicon and Intel), macOS 11 or later. It also puts the `openthings` command on your PATH (`openthings --add "Buy milk #errand"`).
+Recent Homebrew only loads casks from taps you trust. The full name in the first command trusts the cask for you; with `brew tap` and the short name, run `brew trust` first, or the install stops with `Refusing to load cask ... from untrusted tap`. If `brew upgrade` ever says that, run `brew trust spuder/openthings` once.
 
-It isn't notarized yet, so macOS blocks it the first time: open it once, then System Settings → Privacy & Security → **Open Anyway**.
+The app is a universal build (Apple silicon and Intel), macOS 11 or later, signed and notarized. It also puts the `openthings` command on your PATH (`openthings --add "Buy milk #errand"`).
 
 Update with `brew upgrade --cask openthings`; remove with `brew uninstall --cask openthings` (add `--zap` to delete local data too).
 
