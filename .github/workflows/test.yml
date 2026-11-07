@@ -16,6 +16,8 @@ jobs:
         run: |
           mkdir -p "$(brew --repository)/Library/Taps/spuder"
           ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/spuder/homebrew-openthings"
+          # Homebrew 7 only loads casks from taps on its trust list; a symlinked tap isn't on it.
+          brew trust --tap spuder/openthings
       - run: brew style --cask spuder/openthings/openthings
       - run: brew audit --cask --strict spuder/openthings/openthings
       - name: Install (once a release exists)
