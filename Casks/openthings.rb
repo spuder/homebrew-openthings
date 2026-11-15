@@ -1,7 +1,7 @@
 # Updated automatically by the Desktop workflow in spuder/OpenThings when a v* tag is released.
 cask "openthings" do
-  version "0.15.1"
-  sha256 "00054473abe615abee4ebb7a5d7624956451af709a2bcb98b1d5d7fd80865bc4"
+  version "0.16.0"
+  sha256 "e4c94622b7665a1f218575933d63d0efbeff44b9841696a7fdfe099291eaf52f"
 
   url "https://github.com/spuder/OpenThings/releases/download/v#{version}/OpenThings-#{version}-macos-universal.dmg"
   name "OpenThings"
